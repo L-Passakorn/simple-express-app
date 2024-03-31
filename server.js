@@ -1,9 +1,25 @@
-// Importing required modules
 const express = require("express");
+const mysql = require("mysql");
 
-// Creating an instance of express
 const app = express();
-const port = 4000; // Port on which the server will run
+const port = 4000;
+
+// MySQL database connection configuration
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "username", // แทนที่ด้วยชื่อผู้ใช้ MySQL ของคุณ
+  password: "password", // แทนที่ด้วยรหัสผ่าน MySQL ของคุณ
+  database: "database_name" // แทนที่ด้วยชื่อฐานข้อมูลที่คุณต้องการเชื่อมต่อ
+});
+
+// Connect to MySQL database
+connection.connect((err) => {
+  if (err) {
+    console.error('Error connecting to MySQL database: ' + err.stack);
+    return;
+  }
+  console.log('Connected to MySQL database as id ' + connection.threadId);
+});
 
 // Middleware to log request method and URL
 app.use((req, res, next) => {
@@ -16,22 +32,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// Route handling for another route
 app.get("/about", (req, res) => {
   res.send("About page");
 });
 
-// Route handling for dynamic route with parameters
-app.get("/user/:id", (req, res) => {
-  res.send(`User ID: ${req.params.id}`);
-});
-
-// Handling undefined routes
-app.use((req, res, next) => {
-  res.status(404).send("404 Not Found");
-});
-
-// Starting the server
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`);
-});
