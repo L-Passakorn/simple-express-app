@@ -12,7 +12,7 @@ pipeline {
         stage('Scan') {
             steps {
                 withSonarQubeEnv(installationName: 'sq1') {
-                    bat 'npx sonarqube-scanner -d .'
+                    bat 'npx sonar-scanner -X -Dsonar.projectKey=sonar-77 -Dsonar.sources=C:\ProgramData\Jenkins\.jenkins\workspace\sonar-77'
                 }
             }
         }
