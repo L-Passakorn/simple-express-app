@@ -12,7 +12,7 @@ pipeline {
         stage('Scan') {
             steps {
                 withSonarQubeEnv(installationName: 'sq1') {
-                    bat 'npx sonarqube-scanner'
+                    bat 'npx sonarqube-scanner -d .'
                 }
             }
         }
