@@ -1,6 +1,0 @@
-projectKey=6510110356_jenkins-sonarqube
-serverUrl=http://172.30.80.118:9001
-serverVersion=25.9.0.112764
-dashboardUrl=http://172.30.80.118:9001/dashboard?id=6510110356_jenkins-sonarqube
-ceTaskId=da446634-fca3-4871-b82e-79f631079e48
-ceTaskUrl=http://172.30.80.118:9001/api/ce/task?id=da446634-fca3-4871-b82e-79f631079e48
