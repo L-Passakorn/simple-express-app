@@ -21,7 +21,6 @@ pipeline {
         stage('SonarQube Scan') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    // Use the SonarQube credentials configured in Jenkins (withSonarQubeEnv)
                     sh 'npx sonar-scanner -Dsonar.projectKey=6510110356_jenkins-sonarqube'
                 }
             }
