@@ -21,14 +21,16 @@ pipeline {
         stage('SonarQube Scan') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh 'npx sonar-scanner -Dsonar.token=sqp_d13c9cce3f94b624d9fa0f2960de757514784ad3 -Dsonar.projectKey=6510110356_jenkins-sonarqube'
+                    // Use the SonarQube credentials configured in Jenkins (withSonarQubeEnv)
+                    sh 'npx sonar-scanner -Dsonar.projectKey=6510110356_jenkins-sonarqube'
                 }
             }
         }
 
         stage('Quality Gate') {
             steps {
-                timeout(time: 5, unit: 'MINUTES') {
+                // Increase timeout to allow SonarQube background processing to complete
+                timeout(time: 10, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
             }
